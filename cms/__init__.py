@@ -12,6 +12,9 @@ logging.basicConfig(level=os.environ.get("LOG_LEVEL", logging.INFO))
 def create_app():
     app = Flask(__name__)
     cors = CORS(app)
+    app.config['SQLALCHEMY_DATABASE_URI']='postgresql://' + os.environ['DB_USER'] + \
+        ':' + os.environ['DB_PASSWORD'] + '@' + os.environ['DB_HOST'] + \
+        ':' + os.environ['DB_PORT'] + '/' + os.environ['DB_NAME']
 
     db = SQLAlchemy(app)
 
