@@ -1,0 +1,105 @@
+
+h1 {
+  font-size: 22px;
+  text-transform: lowercase;
+  font-weight: 100;
+  margin: 20px 20px;
+}
+
+.board {
+  max-width: 95%;
+  margin: 15px auto 0 auto;
+
+  .board-stories {
+    width: 85%;
+    float:left;
+    border-right: 1px solid #ddd;
+  }
+  .board-next {
+    width: 15%;
+    float: right;
+  }
+}
+
+.story {
+  position: relative;
+  margin: 5rem 0;
+}
+
+.story-byline {
+  .avatar {
+    float: left;
+  }
+  span {
+    font-size: 12px;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+
+  &.avatar-ashley {
+    background-image: url('../../images/avatar_ashley.jpeg');
+  }
+  &.avatar-erica {
+    background-image: url('../../images/avatar_erica.jpeg');
+  }
+  &.avatar-sara {
+    background-image: url('../../images/avatar_sara.jpeg');
+  }
+  &.avatar-sean {
+    background-image: url('../../images/avatar_sean.jpeg');
+  }
+
+  &.avatar-wendy {
+    background-image: url('../../images/avatar_wendy.jpeg');
+  }
+}
+
+
+.who, .overlay {
+  width: 100px;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #555;
+  position: absolute;
+  right: -110px;
+  top: 25px;
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+  }
+}
+
+.overlay {
+  width: 50px;
+  right: none;
+
+}
+
+
+.state {
+  float: left;
+  height: 17px;
+  width: 0%;
+
+  &.state-end-1 {
+    background-color: #F99DCB;
+  }
+  &.state-end-2 {
+    background-color: #17EFFF;
+  }
+  &.state-end-3 {
+    background-color: #AD9AED;
+  }
+  &.state-end-4 {
+    background-color: #F9256C;
+  }
+}

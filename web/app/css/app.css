@@ -1,0 +1,115 @@
+/* line 2, ../../sass/app.scss */
+h1 {
+  font-size: 22px;
+  text-transform: lowercase;
+  font-weight: 100;
+  margin: 20px 20px;
+}
+
+/* line 9, ../../sass/app.scss */
+.board {
+  max-width: 95%;
+  margin: 15px auto 0 auto;
+}
+/* line 13, ../../sass/app.scss */
+.board .board-stories {
+  width: 85%;
+  float: left;
+  border-right: 1px solid #ddd;
+}
+/* line 18, ../../sass/app.scss */
+.board .board-next {
+  width: 15%;
+  float: right;
+}
+
+/* line 24, ../../sass/app.scss */
+.story {
+  position: relative;
+  margin: 5rem 0;
+}
+
+/* line 30, ../../sass/app.scss */
+.story-byline .avatar {
+  float: left;
+}
+/* line 33, ../../sass/app.scss */
+.story-byline span {
+  font-size: 12px;
+}
+
+/* line 38, ../../sass/app.scss */
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+/* line 45, ../../sass/app.scss */
+.avatar.avatar-ashley {
+  background-image: url("../../images/avatar_ashley.jpeg");
+}
+/* line 48, ../../sass/app.scss */
+.avatar.avatar-erica {
+  background-image: url("../../images/avatar_erica.jpeg");
+}
+/* line 51, ../../sass/app.scss */
+.avatar.avatar-sara {
+  background-image: url("../../images/avatar_sara.jpeg");
+}
+/* line 54, ../../sass/app.scss */
+.avatar.avatar-sean {
+  background-image: url("../../images/avatar_sean.jpeg");
+}
+/* line 58, ../../sass/app.scss */
+.avatar.avatar-wendy {
+  background-image: url("../../images/avatar_wendy.jpeg");
+}
+
+/* line 64, ../../sass/app.scss */
+.who, .overlay {
+  width: 100px;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #555;
+  position: absolute;
+  right: -110px;
+  top: 25px;
+}
+/* line 74, ../../sass/app.scss */
+.who .avatar, .overlay .avatar {
+  width: 50px;
+  height: 50px;
+  background-size: 50px 50px;
+}
+
+/* line 81, ../../sass/app.scss */
+.overlay {
+  width: 50px;
+  right: none;
+}
+
+/* line 88, ../../sass/app.scss */
+.state {
+  float: left;
+  height: 17px;
+  width: 0%;
+}
+/* line 93, ../../sass/app.scss */
+.state.state-end-1 {
+  background-color: #F99DCB;
+}
+/* line 96, ../../sass/app.scss */
+.state.state-end-2 {
+  background-color: #17EFFF;
+}
+/* line 99, ../../sass/app.scss */
+.state.state-end-3 {
+  background-color: #AD9AED;
+}
+/* line 102, ../../sass/app.scss */
+.state.state-end-4 {
+  background-color: #F9256C;
+}
