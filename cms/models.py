@@ -17,6 +17,7 @@ class Person(db.Model):
 
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    article_id = db.Column(db.Integer, db.ForeignKey('article.id'), nullable=False)
     description = db.Column(db.String)
     start_state_id = db.Column(db.Integer(), db.ForeignKey('article_state.id'), nullable=False)
     end_state_id = db.Column(db.Integer(), db.ForeignKey('article_state.id'), nullable=False)
