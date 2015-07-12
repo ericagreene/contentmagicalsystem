@@ -4,6 +4,7 @@ import os
 import base64
 import email
 import json
+import csv
 
 import apiclient
 from apiclient import discovery
@@ -11,6 +12,7 @@ from oauth2client import client
 from oauth2client.file import Storage
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.tools import run
+from email.mime.text import MIMEText
 
 
 def get_email_list(service):
@@ -62,18 +64,41 @@ def authenticate():
     return service
 
 
+def get_seen_msg_ids():
+    old_msg_id_f = './data/old_msg_ids.txt'
+    old_msg_ids = []
+    with open(old_msg_ids, 'w+') as infile:
+        reader = csv.reader(infile)
+        for line in reader:
+            old_msg_ids.append(line)
+
+    return old_msg_ids
+
+
 def retrieve_email():
     service = authenticate()
+    old_msg_ids = get_seen_msg_ids()
 
-    #old_msg_ids = []
     ten_msg_ids = get_email_list(service)
     for msg_id in ten_msg_ids:
-        #if msg_id not in old_msg_ids:
-        raw_email = get_raw_email(service, msg_id)
-        parsed_email = parse_email(raw_email)
-        print '-----------------------'
-        for key, value in parsed_email.iteritems():
-            print key, '\n', value, '\n\n'
+        if msg_id not in old_msg_ids:
+            raw_email = get_raw_email(service, msg_id)
+            parsed_email = parse_email(raw_email)
+            print '-----------------------'
+            for key, value in parsed_email.iteritems():
+                print key, '\n', value, '\n\n'
 
 
-retrieve_email()
+def send_email(to, subject, body):
+    service = authenticate()
+
+    message = MIMEText(body)
+    message['to'] = to
+    message['from'] = 'contentmagicalsystem@gmail.com'
+    message['subject'] = subject
+    message = {'raw': base64.urlsafe_b64encode(message.as_string())}
+
+    message = service.users().messages().send(userId='me', body=message).execute()
+    return message
+
+
