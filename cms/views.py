@@ -27,12 +27,8 @@ def dashboard():
     content = {}
 
     return jsonify(
-        {"states": states},
-        {"content": content}
+        {
+            "states": states,
+            "content": content
+        }
     )
-
-def send_email(email_address, body):
-    """
-    Sends email to specified email address.
-    """
-    pass
