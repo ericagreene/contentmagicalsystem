@@ -15,4 +15,5 @@ itsdangerous==0.24
 psycopg2==2.6.1
 six==1.9.0
 wsgiref==0.1.2
-wordpress_xmlrpc==1.5
+python-wordpress-xmlrpc==2.3
+beautifulsoup4==4.4.0
