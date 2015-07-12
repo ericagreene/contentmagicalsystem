@@ -24,8 +24,10 @@ def article():
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     states = [{"id": a.id, "display_name": a.name} for a in ArticleState.query.all()]
-    content = {} 
-    #content = [{"id":a.id,"":a.} for a in ArticleState.query.all()]
+    #content = {} 
+    content = [{"id":a.id,"actions": [{"timestamp":a.timestamp,"start_state":a.start_state_id ,"state":a.end_state_id}] } 
+		for a in Action.query.all()]
+
     return jsonify(
         {
             "states": states,
