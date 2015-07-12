@@ -25,6 +25,7 @@ class Action(db.Model):
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    slug = db.Column(db.String)
     reporter = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
     editor1 = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
     editor2 = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
