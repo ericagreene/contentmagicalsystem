@@ -4,6 +4,9 @@ def populate(session):
     """
     Adds fake data.
     """
+    resp=Action.query.delete()
+    resp=Article.query.delete()
+    print(resp)
     # Add user data
     with open('data/users.csv', 'r') as f:
         lines = f.readlines()
@@ -44,6 +47,7 @@ def populate(session):
     # Add article data
     staff = Person.query.all()
     article_data = [{
+        "id":1,
         "reporter": 1,
         "editor1": 2,
         "editor2": 3,
@@ -55,6 +59,7 @@ def populate(session):
         "section": "World"
     },
     {
+        "id":2,
         "reporter": 3,
         "editor1": 4,
         "editor2": 1,
@@ -73,6 +78,7 @@ def populate(session):
         if not already_exists:
             print "Adding article {0}".format(article["print_headline"])
             session.add(Article(
+                id=article["id"],
                 reporter=article["reporter"],
                 editor1=article["editor1"],
                 editor2=article["editor2"],
@@ -95,12 +101,14 @@ def populate(session):
 
     current_time = datetime.datetime.utcnow()
     action_data = [{
-        "description": "Finished with draft.",
+        "article_id":1, 
+	"description": "Finished with draft.",
         "start_state_id": 1,
         "end_state_id": 2,
         "timestamp": current_time
     },
     {
+        "article_id":2,	
         "description": "Changed intro. Please review",
         "start_state_id": 2,
         "end_state_id": 3,
@@ -109,6 +117,7 @@ def populate(session):
 
     for action in action_data:
         session.add(Action(
+  	    article_id =action["article_id"], 
             description=action["description"],
             start_state_id=action["start_state_id"],
             end_state_id=action["end_state_id"],

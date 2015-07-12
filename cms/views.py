@@ -24,8 +24,8 @@ def article():
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     states = [{"id": a.id, "display_name": a.name} for a in ArticleState.query.all()]
-    content = {}
-
+    content = {} 
+    #content = [{"id":a.id,"":a.} for a in ArticleState.query.all()]
     return jsonify(
         {
             "states": states,
