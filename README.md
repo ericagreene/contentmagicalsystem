@@ -22,15 +22,8 @@ Install dependencies:
 Create a postgresql database named `cms_development`. Then run:
 
     python manage.py db init
-
-When there is a database change, you can generate an initial migration:
-
-    python manage.py db migrate --message add_something_to_table
-
-The migration script needs to be reviewed and edited, particularly if your
-change involved indices. Once finalized, the migration script also needs to be
-added to version control. Don't forget to add a useful message.
-
-Then you can apply the migration to the database:
-
     python manage.py db upgrade
+
+To load fake data, run
+
+    python cms/populate_db.py
