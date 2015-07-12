@@ -22,7 +22,7 @@ def Publish_Post(title,body):
         return "Empty title requested"
 
     if len(body) == 0:
-        rasie("Cant Process the request")
+        raise("Cant Process the request")
         return "Empty body requested"
     '''
     Future or Next in line

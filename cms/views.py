@@ -23,16 +23,16 @@ def article():
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-    return "This should be a dashboard..."
+    states = [{"id": a.id, "display_name": a.name} for a in ArticleState.query.all()]
+    content = {}
+
+    return jsonify(
+        {"states": states},
+        {"content": content}
+    )
 
 def send_email(email_address, body):
     """
     Sends email to specified email address.
-    """
-    pass
-
-def send_to_wordpress(headline, body):
-    """
-    Creates a new post with the specified headline and body
     """
     pass

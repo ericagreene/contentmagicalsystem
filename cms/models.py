@@ -2,31 +2,31 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import exc
 from cms import db
 
-class State(db.Model):
+class ArticleState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
 
-class User(db.Model):
+class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, unique=True)
     name = db.Column(db.String)
     desk = db.Column(db.String)
-    job = db.Column(db.Integer, db.ForeignKey('state.id'), nullable=False)
+    job_id = db.Column(db.Integer, db.ForeignKey('article_state.id'), nullable=False)
 
     # ToDo: Add twitter handle, desk Twitter handle?
 
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String)
-    start_state_id = db.Column(db.Integer(), db.ForeignKey('state.id'), nullable=False)
-    end_state_id = db.Column(db.Integer(), db.ForeignKey('state.id'), nullable=False)
+    start_state_id = db.Column(db.Integer(), db.ForeignKey('article_state.id'), nullable=False)
+    end_state_id = db.Column(db.Integer(), db.ForeignKey('article_state.id'), nullable=False)
     timestamp = db.Column(db.DateTime(), nullable=False)
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    reporter = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    editor1 = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    editor2 = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    reporter = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
+    editor1 = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
+    editor2 = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
 
     print_headline = db.Column(db.String)
     digital_headline = db.Column(db.String)
