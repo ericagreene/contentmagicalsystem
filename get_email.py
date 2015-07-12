@@ -16,7 +16,8 @@ from email.mime.text import MIMEText
 
 
 def get_email_list(service):
-	message_feed = service.users().messages().list(userId='me').execute().get('messages')
+	message_feed = service.users().messages().list(userId='me',
+                                                    labelIds='INBOX').execute().get('messages')
 	message_ids = []
 	for message in message_feed[:10]:
 		message_id = message['id']
@@ -65,14 +66,20 @@ def authenticate():
 
 
 def get_seen_msg_ids():
-    old_msg_id_f = './data/old_msg_ids.txt'
     old_msg_ids = []
-    with open(old_msg_ids, 'w+') as infile:
+    old_msg_id_f = './data/old_msg_ids.csv'
+    with open(old_msg_id_f, 'r') as infile:
         reader = csv.reader(infile)
         for line in reader:
-            old_msg_ids.append(line)
-
+            old_msg_ids += line
     return old_msg_ids
+
+
+def add_seen_msg_ids(old_msg_ids):
+    old_msg_id_f = './data/old_msg_ids.csv'
+    with open(old_msg_id_f, 'w') as outfile:
+        writer = csv.writer(outfile)
+        writer.writerow(old_msg_ids)
 
 
 def retrieve_email():
@@ -84,9 +91,13 @@ def retrieve_email():
         if msg_id not in old_msg_ids:
             raw_email = get_raw_email(service, msg_id)
             parsed_email = parse_email(raw_email)
+            old_msg_ids.append(msg_id)
             print '-----------------------'
             for key, value in parsed_email.iteritems():
                 print key, '\n', value, '\n\n'
+
+    add_seen_msg_ids(old_msg_ids)
+
 
 
 def send_email(to, subject, body):
@@ -101,4 +112,4 @@ def send_email(to, subject, body):
     message = service.users().messages().send(userId='me', body=message).execute()
     return message
 
-
+retrieve_email()
