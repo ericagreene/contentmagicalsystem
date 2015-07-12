@@ -112,4 +112,3 @@ def send_email(to, subject, body):
     message = service.users().messages().send(userId='me', body=message).execute()
     return message
 
-retrieve_email()
